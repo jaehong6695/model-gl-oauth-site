@@ -1,31 +1,73 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MODEL-GL Release Controller</title>
-  <meta name="description" content="Owner-operated release and verification controller for Google Apps Script automation.">
+  <meta name="description" content="A non-commercial release engineering utility for Google Apps Script automation.">
+  <style>
+    body { max-width: 900px; margin: 40px auto; padding: 0 20px; font: 16px/1.6 system-ui, sans-serif; color:#202124; }
+    h1,h2 { line-height:1.25; }
+    code { background:#f1f3f4; padding:2px 6px; border-radius:4px; }
+    section { margin: 34px 0; }
+    .muted { color:#5f6368; }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>MODEL-GL Release Controller</h1>
+<main>
+  <h1>MODEL-GL Release Controller</h1>
+  <p class="muted">Owner-operated, non-commercial software-development infrastructure.</p>
 
+  <section>
+    <h2>Project overview</h2>
     <p>
-      This owner-operated tool manages deployment and verification
-      of the owner's Google Apps Script automation through Google APIs.
+      MODEL-GL Release Controller is a private release-engineering utility used by its owner
+      to deploy and verify Google Apps Script automation and the related Google Sheets control data.
     </p>
-
     <p>
-      Google access is used only for functions required to manage
-      Apps Script projects, deployments, and associated Google Sheets
-      automation controlled by the owner.
+      This public site documents the OAuth integration and privacy practices only.
+      It does not expose private source code, credentials, model rules, market data, or user secrets.
     </p>
+  </section>
 
+  <section>
+    <h2>What the software does</h2>
+    <ul>
+      <li>Authenticates the owner through Google OAuth.</li>
+      <li>Manages and verifies Google Apps Script project deployments.</li>
+      <li>Checks release state before and after deployment.</li>
+      <li>Works with owner-controlled Google Sheets used by the automation.</li>
+      <li>Keeps OAuth credentials in protected local or repository-secret storage.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Release architecture</h2>
     <p>
-      This website does not provide a public trading service and does not sell Google user data.
+      Owner approval → GitHub release workflow → Google OAuth →
+      Apps Script deployment verification → Google Sheets control state.
     </p>
+    <p>
+      OAuth access is limited to the Google services required for these owner-requested
+      development and release operations.
+    </p>
+  </section>
 
+  <section>
+    <h2>Security</h2>
+    <ul>
+      <li>No OAuth refresh token or client secret is published on this site.</li>
+      <li>No Google user data is sold or used for advertising.</li>
+      <li>Access can be revoked by the owner through Google Account security settings.</li>
+      <li>The project is non-commercial and does not provide a public trading or financial service.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Project links</h2>
     <p><a href="privacy.html">Privacy Policy</a></p>
-  </main>
+    <p><a href="https://github.com/jaehong6695/model-gl-oauth-site">Public project repository</a></p>
+  </section>
+</main>
 </body>
 </html>
