@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MODEL-G/L Kakao Authorization</title>
+<style>
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:720px;margin:48px auto;padding:0 20px;line-height:1.6}
+.card{border:1px solid #ddd;border-radius:14px;padding:24px}
+code{word-break:break-all;background:#f5f5f5;padding:10px;display:block;border-radius:8px}
+button{padding:10px 14px;border:0;border-radius:8px;cursor:pointer}
+.small{font-size:14px;color:#666}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>MODEL-G/L Kakao 인증</h1>
+<p id="status">인증 결과를 확인하는 중입니다.</p>
+<code id="code"></code>
+<p><button id="copy" hidden>인증 코드 복사</button></p>
+<p class="small">이 페이지는 URL의 인증 코드를 서버로 전송하거나 저장하지 않습니다. 인증 코드는 짧은 시간 동안만 유효합니다.</p>
+</div>
+<script>
+const p=new URLSearchParams(location.search);
+const code=p.get('code');
+const err=p.get('error');
+const desc=p.get('error_description');
+const status=document.getElementById('status');
+const box=document.getElementById('code');
+const copy=document.getElementById('copy');
+if(code){
+  status.textContent='카카오 인증이 완료되었습니다. 아래 인증 코드를 MODEL-G/L 설정에 한 번만 등록하면 이후 토큰 갱신은 자동화됩니다.';
+  box.textContent=code;
+  copy.hidden=false;
+  copy.onclick=async()=>{await navigator.clipboard.writeText(code);copy.textContent='복사됨';};
+}else{
+  status.textContent=err?'카카오 인증이 완료되지 않았습니다.':'인증 코드가 없습니다.';
+  box.textContent=err?((err||'')+(desc?' · '+desc:'')):'';
+}
+</script>
+</body>
+</html>
