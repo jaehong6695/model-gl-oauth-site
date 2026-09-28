@@ -23,18 +23,22 @@ button{padding:10px 14px;border:0;border-radius:8px;cursor:pointer}
 <script>
 const p=new URLSearchParams(location.search);
 const code=p.get('code');
+const state=p.get('state');
+const expected=sessionStorage.getItem('modelgl_kakao_oauth_state');
+const stateOk=!!state&&!!expected&&state===expected;
 const err=p.get('error');
 const desc=p.get('error_description');
 const status=document.getElementById('status');
 const box=document.getElementById('code');
 const copy=document.getElementById('copy');
-if(code){
-  status.textContent='카카오 인증이 완료되었습니다. 아래 인증 코드를 MODEL-G/L 설정에 한 번만 등록하면 이후 토큰 갱신은 자동화됩니다.';
+if(code&&stateOk){
+  sessionStorage.removeItem('modelgl_kakao_oauth_state');
+  status.textContent='카카오 인증이 완료되었습니다. 아래 1회성 인증 코드를 GitHub Environment Secret KAKAO_AUTHORIZATION_CODE에 등록하세요. 이후 MODEL-G/L이 Refresh Token 발급·저장과 토큰 자동갱신을 수행합니다.';
   box.textContent=code;
   copy.hidden=false;
   copy.onclick=async()=>{await navigator.clipboard.writeText(code);copy.textContent='복사됨';};
 }else{
-  status.textContent=err?'카카오 인증이 완료되지 않았습니다.':'인증 코드가 없습니다.';
+  status.textContent=err?'카카오 인증이 완료되지 않았습니다.':(code&&!stateOk?'보안 state 검증에 실패했습니다. 시작 페이지에서 다시 인증하세요.':'인증 코드가 없습니다.');
   box.textContent=err?((err||'')+(desc?' · '+desc:'')):'';
 }
 </script>
