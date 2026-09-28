@@ -21,7 +21,7 @@ document.getElementById('go').onclick=()=>{
  if(!key){alert('REST API 키를 입력하세요.');return;}
  const state=[...crypto.getRandomValues(new Uint8Array(18))].map(x=>x.toString(16).padStart(2,'0')).join('');
  sessionStorage.setItem('modelgl_kakao_oauth_state',state);
- const redirect='https://modelgl.is-a-good.dev/kakao-callback.html';
+ const redirect='https://jaehong6695.github.io/model-gl-oauth-site/kakao-callback.html';
  const u=new URL('https://kauth.kakao.com/oauth/authorize');
  u.searchParams.set('client_id',key);
  u.searchParams.set('redirect_uri',redirect);
